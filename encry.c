@@ -5,9 +5,11 @@
 	    FILE *open, *close;
 	    char buff[8192];
 	    open = fopen(file, "r");
-	    close = fopen("copia_cry_encript.cry", "w");
+		file[strlen(file)-4]='\0';
+		strcat(file, ".cry");
+	    close = fopen(file, "w");
 	    fread(&buff, 1, 8192, open);
-	    for(int x=0;x<strlen(buff)+1;x++){
+	    for(int x=0;x<strlen(buff);x++){
 		    fprintf(close, "%c", (buff[x] - pass));
 		
 		}
@@ -22,11 +24,12 @@
 	    FILE *open, *close;
 	    char buff[8192];
 	    open = fopen(file, "r");
-	    close = fopen("copia_cry_decif.txt", "w");
+		file[strlen(file)-4]='\0';
+		strcat(file, ".txt");
+	    close = fopen(file, "w");
 	    fread(&buff, 1, 8192, open);
-	    for(int x=0;x<strlen(buff)+1;x++){
+	    for(int x=0;x<strlen(buff);x++){
 		    fprintf(close, "%c", (buff[x] + pass));
-		
 		}
 		fclose(open);
 		fclose(close);
